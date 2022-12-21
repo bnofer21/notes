@@ -17,7 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         DataManager.shared.loadNotes { notes in
             self.window = UIWindow(windowScene: windowScene)
             let nav = UINavigationController(rootViewController: MainController(notes: notes))
-            nav.navigationBar.scrollEdgeAppearance = nav.navigationBar.standardAppearance
             self.window?.rootViewController = nav
             self.window?.makeKeyAndVisible()
         }

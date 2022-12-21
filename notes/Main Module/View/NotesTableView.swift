@@ -9,9 +9,19 @@ import UIKit
 
 class NotesTableView: UITableView {
     
+    override var contentSize:CGSize {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+
+    override var intrinsicContentSize: CGSize {
+        layoutIfNeeded()
+        return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
+    }
+    
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
-        configure()
         setupView()
     }
     
@@ -19,14 +29,14 @@ class NotesTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
-        register(NoteCell.self, forCellReuseIdentifier: NoteCell.id)
-    }
-    
     private func setupView() {
+        register(NoteCell.self, forCellReuseIdentifier: NoteCell.id)
         backgroundColor = .white
-//        layer.masksToBounds = true
-//        layer.cornerRadius = 15
-        separatorColor = backgroundColor
+        layer.masksToBounds = true
+        layer.cornerRadius = 15
+        separatorStyle = .none
+        bounces = false
+        alwaysBounceVertical = false
+        alwaysBounceHorizontal = false
     }
 }

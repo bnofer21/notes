@@ -14,7 +14,7 @@ class EditController: UIViewController {
     
     var saveButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Save", for: .normal)
+        button.setTitle("Done", for: .normal)
         return button
     }()
     
@@ -36,6 +36,7 @@ class EditController: UIViewController {
         super.viewDidLoad()
         addTargets()
         setupView()
+        setDelegates()
     }
     
     private func setupView() {
@@ -44,36 +45,43 @@ class EditController: UIViewController {
     }
     
     private func addTargets() {
-        saveButton.addTarget(self, action: #selector(saveNote), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(hideKeyboard), for: .touchUpInside)
     }
     
-    @objc func saveNote() {
-        guard !noteView.textView.text.isEmpty else { return }
+    private func setDelegates() {
+        noteView.textView.delegate = self
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+}
+
+extension EditController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        guard !textView.text.isEmpty else { return }
+        note.text = noteView.textView.text!
+        note.name = String(noteView.textView.text.prefix(10))
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        var isNew = false
         if let text = note.text, !text.isEmpty {
-            note.text = noteView.textView.text!
-            note.name = String(noteView.textView.text.prefix(10))
-            DataManager.shared.updateValues {
-                if let rootvc = navigationController?.viewControllers.first as? MainController {
-                    DataManager.shared.loadNotes { notes in
-                        rootvc.notes = notes
-                        rootvc.notesView.notesTableView.reloadData()
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }
-                }
-            }
+            isNew = true
         } else {
-            note.text = noteView.textView.text!
-            note.name = String(noteView.textView.text.prefix(10))
-            DataManager.shared.saveNote(note: note) {
-                if let rootvc = navigationController?.viewControllers.first as? MainController {
-                    DataManager.shared.loadNotes { notes in
-                        rootvc.notes = notes
-                        rootvc.notesView.notesTableView.reloadData()
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }
+            isNew = false
+        }
+        DataManager.shared.saveNote(isNew: isNew, note: note) {
+            if let rootvc = navigationController?.viewControllers.first as? MainController {
+                DataManager.shared.loadNotes { notes in
+                    rootvc.notes = notes
+                    rootvc.notesView.notesTableView.reloadData()
                 }
             }
         }
     }
-    
 }
+
+
+

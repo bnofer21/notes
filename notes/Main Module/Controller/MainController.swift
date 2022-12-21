@@ -69,7 +69,7 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteCell.id, for: indexPath) as? NoteCell else { return UITableViewCell() }
         cell.viewModel = NoteViewModel(note: notes[indexPath.row])
-        cell.textLabel?.text = notes[indexPath.row].name
+        cell.hideSeparator(indexPath.row == notes.count-1 ? true : false)
         return cell
     }
     
@@ -77,6 +77,10 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let editVC = EditController(note: notes[indexPath.row])
         navigationController?.pushViewController(editVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
     }
     
     
