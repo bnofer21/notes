@@ -6,12 +6,19 @@
 //
 
 import UIKit
+import CoreData
 
 class MainController: UIViewController {
     
-    var notes: [Note] 
+    var notes: [Note]
     
-    var noteTableView = NotesTableView()
+    var addButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Add", for: .normal)
+        return button
+    }()
+    
+    var notesView = NotesView()
     
     init(notes: [Note]) {
         self.notes = notes
@@ -23,17 +30,30 @@ class MainController: UIViewController {
     }
     
     override func loadView() {
-        view = noteTableView
+        view = notesView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setTargets()
     }
     
     private func setupView() {
-        noteTableView.delegate = self
-        noteTableView.dataSource = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Notes"
+        notesView.notesTableView.delegate = self
+        notesView.notesTableView.dataSource = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
+    }
+    
+    private func setTargets() {
+        addButton.addTarget(self, action: #selector(newNote), for: .touchUpInside)
+    }
+    
+    @objc func newNote() {
+        let editVC = EditController(note: Note(entity: Note.entity(), insertInto: nil))
+        navigationController?.pushViewController(editVC, animated: true)
     }
 
 
@@ -49,7 +69,14 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteCell.id, for: indexPath) as? NoteCell else { return UITableViewCell() }
         cell.viewModel = NoteViewModel(note: notes[indexPath.row])
+        cell.textLabel?.text = notes[indexPath.row].name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let editVC = EditController(note: notes[indexPath.row])
+        navigationController?.pushViewController(editVC, animated: true)
     }
     
     
