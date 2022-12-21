@@ -49,17 +49,31 @@ class EditController: UIViewController {
     
     @objc func saveNote() {
         guard !noteView.textView.text.isEmpty else { return }
-        let text = noteView.textView.text!
-        let name = String(noteView.textView.text.prefix(10))
-        DataManager.shared.saveNote(name: name, text: text, image: UIImage(), completion: {
-            self.navigationController?.popToRootViewController(animated: true)
-            if let rootvc = navigationController?.viewControllers.first as? MainController {
-                DataManager.shared.loadNotes { notes in
-                    rootvc.notes = notes
-                    rootvc.notesView.notesTableView.reloadData()
+        if let text = note.text, !text.isEmpty {
+            note.text = noteView.textView.text!
+            note.name = String(noteView.textView.text.prefix(10))
+            DataManager.shared.updateValues {
+                if let rootvc = navigationController?.viewControllers.first as? MainController {
+                    DataManager.shared.loadNotes { notes in
+                        rootvc.notes = notes
+                        rootvc.notesView.notesTableView.reloadData()
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 }
             }
-        })
+        } else {
+            note.text = noteView.textView.text!
+            note.name = String(noteView.textView.text.prefix(10))
+            DataManager.shared.saveNote(note: note) {
+                if let rootvc = navigationController?.viewControllers.first as? MainController {
+                    DataManager.shared.loadNotes { notes in
+                        rootvc.notes = notes
+                        rootvc.notesView.notesTableView.reloadData()
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }
+            }
+        }
     }
     
 }

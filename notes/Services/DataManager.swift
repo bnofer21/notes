@@ -14,15 +14,14 @@ struct DataManager {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    func saveNote(name: String, text: String, image: UIImage, completion: ()->Void) {
+    func saveNote(note: Note, completion: ()->Void) {
         let context = appDelegate.persistentContainer.viewContext
-        
         guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else { return }
         let noteObject = Note(entity: entity, insertInto: context)
-//        let img = NSManagedObject(entity: entity, insertInto: context)
-//        img.setValue(image, forKey: name)
-        noteObject.name = name
-        noteObject.text = text
+        noteObject.name = note.name
+        noteObject.text = note.text
+        //        let img = NSManagedObject(entity: entity, insertInto: context)
+        //        img.setValue(image, forKey: name)
         do {
             try context.save()
         } catch let error as NSError{
@@ -41,5 +40,15 @@ struct DataManager {
             print("Could not fetch. \(error.localizedDescription)")
         }
         completion(result)
+    }
+    
+    func updateValues(completion: ()->Void) {
+        let context = appDelegate.persistentContainer.viewContext
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        completion()
     }
 }

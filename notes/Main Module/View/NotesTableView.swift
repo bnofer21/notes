@@ -25,8 +25,8 @@ class NotesTableView: UITableView {
     
     private func setupView() {
         backgroundColor = .white
-        layer.masksToBounds = true
-        layer.cornerRadius = 15
+//        layer.masksToBounds = true
+//        layer.cornerRadius = 15
         separatorColor = backgroundColor
     }
 }
