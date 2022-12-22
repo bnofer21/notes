@@ -23,7 +23,6 @@ class NotesView: UIView {
     
     private func setupView() {
         addView(notesTableView)
-        backgroundColor = #colorLiteral(red: 0.8979851604, green: 0.8979851604, blue: 0.8979851604, alpha: 1)
     }
 }
 
@@ -34,6 +33,7 @@ extension NotesView {
             notesTableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -30),
             notesTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             notesTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
         ])
     }
 }

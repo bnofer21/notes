@@ -76,7 +76,7 @@ extension EditController: UITextViewDelegate {
             if let rootvc = navigationController?.viewControllers.first as? MainController {
                 DataManager.shared.loadNotes { notes in
                     rootvc.notes = notes
-                    rootvc.notesView.notesTableView.reloadData()
+                    rootvc.scrollView.notesView.notesTableView.reloadData()
                 }
             }
         }

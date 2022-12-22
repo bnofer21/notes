@@ -11,6 +11,7 @@ import CoreData
 class MainController: UIViewController {
     
     var notes: [Note]
+    var scrollView = ScrollView()
     
     var addButton: UIButton = {
         let button = UIButton(type: .system)
@@ -18,7 +19,10 @@ class MainController: UIViewController {
         return button
     }()
     
-    var notesView = NotesView()
+    override func loadView() {
+        view = scrollView
+    }
+    
     
     init(notes: [Note]) {
         self.notes = notes
@@ -27,10 +31,6 @@ class MainController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func loadView() {
-        view = notesView
     }
 
     override func viewDidLoad() {
@@ -42,8 +42,9 @@ class MainController: UIViewController {
     private func setupView() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Notes"
-        notesView.notesTableView.delegate = self
-        notesView.notesTableView.dataSource = self
+        scrollView.notesView.notesTableView.delegate = self
+        scrollView.notesView.notesTableView.dataSource = self
+        scrollView.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
     }
     
@@ -69,6 +70,7 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteCell.id, for: indexPath) as? NoteCell else { return UITableViewCell() }
         cell.viewModel = NoteViewModel(note: notes[indexPath.row])
+        cell.selectionStyle = .gray
         cell.hideSeparator(indexPath.row == notes.count-1 ? true : false)
         return cell
     }
@@ -84,5 +86,14 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+extension MainController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+            scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.bounds.height
+        }
+    }
 }
 
