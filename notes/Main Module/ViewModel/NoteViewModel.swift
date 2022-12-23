@@ -26,6 +26,13 @@ struct NoteViewModel {
         return img
     }
     
+    var date: String {
+        guard let date = note.date else { return "9 Jan 9:41"}
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM HH:mm"
+        return formatter.string(from: date)
+    }
+    
     init(note: Note) {
         self.note = note
     }
