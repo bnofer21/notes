@@ -16,8 +16,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         DataManager.shared.loadNotes { notes in
+            var nav = UINavigationController()
+            let note = Note(entity: Note.entity(), insertInto: nil)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "d MMM HH:mm"
+            note.name = "First Note"
+            note.text = "Some text"
+            note.date = dateFormatter.date(from: "9 Jan 9:41")
+            if notes.count == 0 {
+                DataManager.shared.saveNote(isNew: true, note: note) {
+                    nav = UINavigationController(rootViewController: MainController(notes: [note]))
+                }
+            } else {
+                nav = UINavigationController(rootViewController: MainController(notes: notes))
+            }
             self.window = UIWindow(windowScene: windowScene)
-            let nav = UINavigationController(rootViewController: MainController(notes: notes))
             self.window?.rootViewController = nav
             self.window?.makeKeyAndVisible()
         }
