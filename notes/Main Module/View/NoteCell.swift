@@ -20,7 +20,7 @@ class NoteCell: UITableViewCell {
     var textLab: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
-        label.textColor = .lightGray
+        label.textColor = .gray
         return label
     }()
     
@@ -64,11 +64,8 @@ class NoteCell: UITableViewCell {
     private func configure() {
         guard let viewModel = viewModel else { return }
         nameLabel.text = viewModel.name
-        if viewModel.text.count > 10 {
-            textLab.text = viewModel.text
-        } else {
-            textLab.text = "No additional text"
-        }
+        textLab.text = viewModel.text
+        dateLabel.text = viewModel.date
         
     }
     

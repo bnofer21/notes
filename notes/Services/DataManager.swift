@@ -21,6 +21,7 @@ struct DataManager {
             let noteObject = Note(entity: entity, insertInto: context)
             noteObject.name = note.name
             noteObject.text = note.text
+            noteObject.date = note.date
             //        let img = NSManagedObject(entity: entity, insertInto: context)
             //        img.setValue(image, forKey: name)
         }
@@ -41,11 +42,13 @@ struct DataManager {
         } catch let error as NSError {
             print("Could not fetch. \(error.localizedDescription)")
         }
+        result = result.sorted(by: { $0.date! > $1.date! })
         completion(result)
     }
     
-    func updateValues(completion: ()->Void) {
+    func deleteNote(note: Note, completion: ()->Void) {
         let context = appDelegate.persistentContainer.viewContext
+        context.delete(note)
         do {
             try context.save()
         } catch let error as NSError {
