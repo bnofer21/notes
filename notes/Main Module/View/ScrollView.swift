@@ -19,14 +19,15 @@ class ScrollView: UIScrollView {
     
     var bottomToolBar: UIToolbar = {
         let tool = UIToolbar()
-        let notesCount = UILabel()
-        notesCount.text = "10 notes"
-        notesCount.sizeToFit()
-        notesCount.textColor = .black
-        notesCount.textAlignment = .center
-        let toolBarItem = UIBarButtonItem(customView: notesCount)
-        tool.items = [toolBarItem]
         return tool
+    }()
+    
+    var notesCount: UILabel = {
+        let label = UILabel()
+        label.sizeToFit()
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -42,13 +43,23 @@ class ScrollView: UIScrollView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentSize.height = notesView.notesTableView.contentSize.height*1.08
+        if bounds.height-150 <= notesView.notesTableView.contentSize.height {
+            contentSize.height = notesView.notesTableView.contentSize.height*1.13
+        } else {
+            contentSize.height = bounds.height*0.9
+        }
         notesView.frame.size.height = contentSize.height
+    }
+    
+    private func configureToolBar() {
+        let toolBarItem = UIBarButtonItem(customView: notesCount)
+        bottomToolBar.items = [toolBarItem]
     }
     
     private func configure() {
         guard let viewModel = viewModel else { return }
-        
+        notesCount.text = "\(viewModel.notesCount) notes"
+        configureToolBar()
     }
     
     private func setupView() {
@@ -62,6 +73,7 @@ extension ScrollView {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
+            notesView.topAnchor.constraint(equalTo: topAnchor),
             notesView.centerXAnchor.constraint(equalTo: centerXAnchor),
             notesView.widthAnchor.constraint(equalTo: widthAnchor),
             

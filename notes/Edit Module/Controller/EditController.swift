@@ -37,6 +37,7 @@ class EditController: UIViewController {
         addTargets()
         setupView()
         setDelegates()
+        showKeyboard()
     }
     
     private func setupView() {
@@ -50,6 +51,10 @@ class EditController: UIViewController {
     
     private func setDelegates() {
         noteView.textView.delegate = self
+    }
+    
+    private func showKeyboard() {
+        noteView.textView.becomeFirstResponder()
     }
     
     @objc func hideKeyboard() {
@@ -67,17 +72,19 @@ extension EditController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         var isNew = false
-        if let text = note.text, !text.isEmpty {
-            isNew = true
-        } else {
+        guard !textView.text.isEmpty else { return }
+        if let _ = note.date {
             isNew = false
+        } else {
+            isNew = true
         }
+        note.date = Date.now
         DataManager.shared.saveNote(isNew: isNew, note: note) {
             if let rootvc = navigationController?.viewControllers.first as? MainController {
-                DataManager.shared.loadNotes { notes in
-                    rootvc.notes = notes
-                    rootvc.scrollView.notesView.notesTableView.reloadData()
+                if isNew {
+                    rootvc.notes.insert(note, at: 0)
                 }
+                rootvc.updateData()
             }
         }
     }

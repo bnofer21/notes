@@ -20,6 +20,7 @@ class MainController: UIViewController {
     }()
     
     override func loadView() {
+        scrollView.viewModel = ScrollViewModel(count: notes.count)
         view = scrollView
     }
     
@@ -50,6 +51,11 @@ class MainController: UIViewController {
     
     private func setTargets() {
         addButton.addTarget(self, action: #selector(newNote), for: .touchUpInside)
+    }
+    
+    public func updateData() {
+        scrollView.viewModel = ScrollViewModel(count: notes.count)
+        scrollView.notesView.notesTableView.reloadData()
     }
     
     @objc func newNote() {
@@ -83,6 +89,19 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         50
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            DataManager.shared.deleteNote(note: notes[indexPath.row]) {
+                notes.remove(at: indexPath.row)
+                updateData()
+            }
+        }
     }
     
     
