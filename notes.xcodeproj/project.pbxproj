@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5B33EA2629543F1100861E53 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33EA2529543F1100861E53 /* ScrollView.swift */; };
 		5B33EA282954462900861E53 /* ScrollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33EA272954462900861E53 /* ScrollViewModel.swift */; };
+		5B33EA2F2955A8C600861E53 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33EA2E2955A8C600861E53 /* Resources.swift */; };
+		5B33EA312956EC4C00861E53 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33EA302956EC4B00861E53 /* UIFont+Extension.swift */; };
 		5BEB776E295307AD00C2EEE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB776D295307AD00C2EEE8 /* AppDelegate.swift */; };
 		5BEB7770295307AD00C2EEE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB776F295307AD00C2EEE8 /* SceneDelegate.swift */; };
 		5BEB7772295307AD00C2EEE8 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB7771295307AD00C2EEE8 /* MainController.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		5B33EA2529543F1100861E53 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		5B33EA272954462900861E53 /* ScrollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewModel.swift; sourceTree = "<group>"; };
+		5B33EA2E2955A8C600861E53 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		5B33EA302956EC4B00861E53 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		5BEB776A295307AD00C2EEE8 /* notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BEB776D295307AD00C2EEE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BEB776F295307AD00C2EEE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				5BEB7779295307AE00C2EEE8 /* Assets.xcassets */,
+				5B33EA2E2955A8C600861E53 /* Resources.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				5BEB77A62953360700C2EEE8 /* UIView+Extension.swift */,
+				5B33EA302956EC4B00861E53 /* UIFont+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -274,6 +280,7 @@
 				5BEB779029530F4E00C2EEE8 /* NoteViewModel.swift in Sources */,
 				5BEB779A2953162E00C2EEE8 /* DataManager.swift in Sources */,
 				5BEB7772295307AD00C2EEE8 /* MainController.swift in Sources */,
+				5B33EA2F2955A8C600861E53 /* Resources.swift in Sources */,
 				5BEB776E295307AD00C2EEE8 /* AppDelegate.swift in Sources */,
 				5BEB7770295307AD00C2EEE8 /* SceneDelegate.swift in Sources */,
 				5BEB77A22953248000C2EEE8 /* EditController.swift in Sources */,
@@ -284,6 +291,7 @@
 				5BEB779429530FFD00C2EEE8 /* NotesTableView.swift in Sources */,
 				5BEB77962953103300C2EEE8 /* NoteCell.swift in Sources */,
 				5BEB77A0295323AC00C2EEE8 /* EditNoteView.swift in Sources */,
+				5B33EA312956EC4C00861E53 /* UIFont+Extension.swift in Sources */,
 				5B33EA282954462900861E53 /* ScrollViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
