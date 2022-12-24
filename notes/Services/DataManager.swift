@@ -22,8 +22,6 @@ struct DataManager {
             noteObject.name = note.name
             noteObject.text = note.text
             noteObject.date = note.date
-            //        let img = NSManagedObject(entity: entity, insertInto: context)
-            //        img.setValue(image, forKey: name)
         }
         do {
             try context.save()
@@ -43,6 +41,7 @@ struct DataManager {
             print("Could not fetch. \(error.localizedDescription)")
         }
         result = result.sorted(by: { $0.date! > $1.date! })
+        print(result[0].text)
         completion(result)
     }
     

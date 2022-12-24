@@ -37,7 +37,6 @@ class EditController: UIViewController {
         addTargets()
         setupView()
         setDelegates()
-        showKeyboard()
         createActionsMenu()
     }
     
@@ -65,10 +64,6 @@ class EditController: UIViewController {
         noteView.textView.delegate = self
     }
     
-    private func showKeyboard() {
-        noteView.textView.becomeFirstResponder()
-    }
-    
     private func photoPickerPresent(type: Resources.PhotoType) {
         let vc = UIImagePickerController()
         if type == .camera {
@@ -85,8 +80,9 @@ class EditController: UIViewController {
     private func setImageInsideTextView(image: UIImage) {
         // create nsattachment
         let attachment = NSTextAttachment()
-        let attrString = NSAttributedString(attachment: attachment)
+        let attrString = NSMutableAttributedString(attachment: attachment)
         attachment.image = image
+        attrString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 17), range: NSRange(location: 0, length: attrString.length))
         // textview and image size
         let imageWidth = image.size.width
         let textview = noteView.textView
@@ -102,16 +98,18 @@ class EditController: UIViewController {
     }
     
     @objc func makeBold() {
-        var text = noteView.textView.attributedText!
-        let attribute = text.attribute(.font, at: 0, effectiveRange: nil) as! UIFont
+        let range = noteView.textView.selectedRange
         var newAttribute = [NSAttributedString.Key: Any]()
+        let string = NSMutableAttributedString(attributedString: noteView.textView.attributedText)
+        let attribute = string.attribute(.font, at: range.location, longestEffectiveRange: nil, in: range) as! UIFont
         if attribute.isBold {
-            newAttribute = [.font: UIFont.systemFont(ofSize: 17)]
+            newAttribute = [.font: UIFont.systemFont(ofSize: attribute.pointSize)]
         } else {
-            newAttribute = [.font: UIFont.boldSystemFont(ofSize: 17)]
+            newAttribute = [.font: UIFont.boldSystemFont(ofSize: attribute.pointSize)]
         }
-        let attrString = NSAttributedString(string: text.string, attributes: newAttribute)
-        noteView.textView.attributedText = attrString
+        string.addAttributes(newAttribute, range: range)
+        noteView.textView.attributedText = string
+        textViewDidChange(noteView.textView)
     }
     
     
@@ -120,9 +118,6 @@ class EditController: UIViewController {
 
 extension EditController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        let attributtedText = NSMutableAttributedString(attributedString: textView.attributedText)
-        attributtedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 17), range: NSRange(location: 0, length: attributtedText.length))
-        textView.attributedText = attributtedText
         guard textView.attributedText != note.text else { return }
         note.text = textView.attributedText
         note.name = String(noteView.textView.text.prefix(10))
@@ -146,6 +141,7 @@ extension EditController: UITextViewDelegate {
             }
         }
     }
+
 }
 
 extension EditController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -18,9 +18,7 @@ struct NoteViewModel {
     
     var text: NSAttributedString {
         guard let text = note.text else { return NSAttributedString(string: "")}
-        let textWithFont = text.mutableCopy() as! NSMutableAttributedString
-        textWithFont.addAttribute(.font, value: UIFont.systemFont(ofSize: 17), range: NSRange(location: 0, length: textWithFont.length))
-        return textWithFont as NSAttributedString
+        return text
     }
     
     var date: String {

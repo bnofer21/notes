@@ -15,7 +15,7 @@ class EditNoteView: UIView {
         }
     }
     
-    var bottomToolBar: UIToolbar = {
+    var keyboardToolBar: UIToolbar = {
         let tool = UIToolbar()
         return tool
     }()
@@ -35,6 +35,7 @@ class EditNoteView: UIView {
     var textView: UITextView = {
         let tv = UITextView()
         tv.font = .systemFont(ofSize: 17)
+        tv.sizeToFit()
         return tv
     }()
     
@@ -52,13 +53,20 @@ class EditNoteView: UIView {
     private func setupView() {
         backgroundColor = .systemBackground
         addView(textView)
-        addView(bottomToolBar)
+        addView(keyboardToolBar)
+        textView.inputAccessoryView = keyboardToolBar
+    }
+    
+    private func setFontTextView() {
+        let attributtedText = NSMutableAttributedString(attributedString: textView.attributedText)
+        attributtedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 17), range: NSRange(location: 0, length: attributtedText.length))
+        textView.attributedText = attributtedText
     }
     
     private func configureToolBar() {
         let cameraBar = UIBarButtonItem(customView: addImageButton)
         let boldText = UIBarButtonItem(customView: makeBoldText)
-        bottomToolBar.items = [boldText ,cameraBar]
+        keyboardToolBar.items = [boldText ,cameraBar]
     }
     
     private func setImageTarget(target: Any?, action: Selector) {
@@ -70,7 +78,13 @@ class EditNoteView: UIView {
     }
     
     private func configure() {
-        textView.attributedText = viewModel?.text
+        guard let viewModel = viewModel else { return }
+        print(viewModel.text.attributes(at: 0, effectiveRange: nil))
+        if viewModel.text.string.isEmpty {
+            setFontTextView()
+        } else {
+            textView.attributedText = viewModel.text
+        }
     }
     
     func createActionsMenu(actions: [UIAction]) {
@@ -90,9 +104,6 @@ extension EditNoteView {
             textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-            bottomToolBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            bottomToolBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            bottomToolBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
         ])
     }
 }

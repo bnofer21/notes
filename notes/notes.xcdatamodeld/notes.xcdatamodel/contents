@@ -4,6 +4,6 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="text" optional="YES" attributeType="Transformable" customClassName="NSAttributedString"/>
+        <attribute name="text" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="NSAttributedString"/>
     </entity>
 </model>
