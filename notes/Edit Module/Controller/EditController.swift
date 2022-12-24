@@ -12,9 +12,10 @@ class EditController: UIViewController {
     var note: Note
     var noteView = EditNoteView()
     
-    var saveButton: UIButton = {
-        let button = UIButton(type: .system)
+    var saveButton: SaveButton = {
+        let button = SaveButton()
         button.setTitle("Done", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
         return button
     }()
     
@@ -95,6 +96,10 @@ class EditController: UIViewController {
     
     @objc func hideKeyboard() {
         view.endEditing(true)
+        DispatchQueue.main.async {
+            self.saveButton.showLoading()
+        }
+        textViewDidEndEditing(noteView.textView)
     }
     
     @objc func makeBold() {
@@ -138,6 +143,7 @@ extension EditController: UITextViewDelegate {
                     rootvc.notes.insert(note, at: 0)
                 }
                 rootvc.updateData()
+                saveButton.hideLoading()
             }
         }
     }
