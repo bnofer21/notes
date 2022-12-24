@@ -32,6 +32,18 @@ class EditNoteView: UIView {
         return button
     }()
     
+    var smallerFont: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "textformat.size.smaller"), for: .normal)
+        return button
+    }()
+    
+    var biggerFont: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "textformat.size.larger"), for: .normal)
+        return button
+    }()
+    
     var textView: UITextView = {
         let tv = UITextView()
         tv.font = .systemFont(ofSize: 17)
@@ -66,15 +78,18 @@ class EditNoteView: UIView {
     private func configureToolBar() {
         let cameraBar = UIBarButtonItem(customView: addImageButton)
         let boldText = UIBarButtonItem(customView: makeBoldText)
-        keyboardToolBar.items = [boldText ,cameraBar]
-    }
-    
-    private func setImageTarget(target: Any?, action: Selector) {
-        addImageButton.addTarget(target, action: action, for: .touchUpInside)
+        let smallFont = UIBarButtonItem(customView: smallerFont)
+        let bigFont = UIBarButtonItem(customView: biggerFont)
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        keyboardToolBar.items = [boldText, flexSpace, bigFont, flexSpace,smallFont, flexSpace, cameraBar]
     }
     
     func setTextTarget(target: Any?, action: Selector) {
         makeBoldText.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    func setChangeFontTarget(target: Any?, action: Selector) {
+        smallerFont.addTarget(target, action: action, for: .touchUpInside)
     }
     
     private func configure() {

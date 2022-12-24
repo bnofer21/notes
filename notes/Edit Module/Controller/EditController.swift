@@ -59,6 +59,7 @@ class EditController: UIViewController {
     private func addTargets() {
         saveButton.addTarget(self, action: #selector(hideKeyboard), for: .touchUpInside)
         noteView.setTextTarget(target: self, action: #selector(makeBold))
+        noteView.setChangeFontTarget(target: self, action: #selector(changeFontSize))
     }
     
     private func setDelegates() {
@@ -117,7 +118,15 @@ class EditController: UIViewController {
         textViewDidChange(noteView.textView)
     }
     
-    
+    @objc func changeFontSize() {
+        let range = noteView.textView.selectedRange
+        let string = NSMutableAttributedString(attributedString: noteView.textView.attributedText)
+        let attribute = string.attribute(.font, at: range.location, longestEffectiveRange: nil, in: range) as! UIFont
+        var newAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: attribute.pointSize-1)]
+        string.addAttributes(newAttribute, range: range)
+        noteView.textView.attributedText = string
+        textViewDidChange(noteView.textView)
+    }
     
 }
 
