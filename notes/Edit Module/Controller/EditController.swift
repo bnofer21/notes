@@ -59,7 +59,8 @@ class EditController: UIViewController {
     private func addTargets() {
         saveButton.addTarget(self, action: #selector(hideKeyboard), for: .touchUpInside)
         noteView.setTextTarget(target: self, action: #selector(makeBold))
-        noteView.setChangeFontTarget(target: self, action: #selector(changeFontSize))
+        noteView.setSmallerFontTarget(target: self, action: #selector(smallerFontSize))
+        noteView.setBiggerFontTarget(target: self, action: #selector(biggerFontSize))
     }
     
     private func setDelegates() {
@@ -74,9 +75,7 @@ class EditController: UIViewController {
             vc.sourceType = .photoLibrary
         }
         vc.delegate = self
-        DispatchQueue.main.async {
-            self.present(vc, animated: true)
-        }
+        present(vc, animated: true)
     }
     
     private func setImageInsideTextView(image: UIImage) {
@@ -101,6 +100,7 @@ class EditController: UIViewController {
             self.saveButton.showLoading()
         }
         textViewDidEndEditing(noteView.textView)
+        saveButton.hideLoading()
     }
     
     @objc func makeBold() {
@@ -116,16 +116,29 @@ class EditController: UIViewController {
         string.addAttributes(newAttribute, range: range)
         noteView.textView.attributedText = string
         textViewDidChange(noteView.textView)
+        saveButton.hideLoading()
     }
     
-    @objc func changeFontSize() {
+    @objc func smallerFontSize() {
         let range = noteView.textView.selectedRange
         let string = NSMutableAttributedString(attributedString: noteView.textView.attributedText)
         let attribute = string.attribute(.font, at: range.location, longestEffectiveRange: nil, in: range) as! UIFont
-        var newAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: attribute.pointSize-1)]
+        let newAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: attribute.pointSize-1)]
         string.addAttributes(newAttribute, range: range)
         noteView.textView.attributedText = string
         textViewDidChange(noteView.textView)
+        saveButton.hideLoading()
+    }
+    
+    @objc func biggerFontSize() {
+        let range = noteView.textView.selectedRange
+        let string = NSMutableAttributedString(attributedString: noteView.textView.attributedText)
+        let attribute = string.attribute(.font, at: range.location, longestEffectiveRange: nil, in: range) as! UIFont
+        let newAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: attribute.pointSize+1)]
+        string.addAttributes(newAttribute, range: range)
+        noteView.textView.attributedText = string
+        textViewDidChange(noteView.textView)
+        saveButton.hideLoading()
     }
     
 }
@@ -152,7 +165,6 @@ extension EditController: UITextViewDelegate {
                     rootvc.notes.insert(note, at: 0)
                 }
                 rootvc.updateData()
-                saveButton.hideLoading()
             }
         }
     }
