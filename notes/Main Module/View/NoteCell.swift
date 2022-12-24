@@ -64,9 +64,8 @@ class NoteCell: UITableViewCell {
     private func configure() {
         guard let viewModel = viewModel else { return }
         nameLabel.text = viewModel.name
-        textLab.text = viewModel.text
+        textLab.text = viewModel.text.string.replacingOccurrences(of: "\n", with: "")
         dateLabel.text = viewModel.date
-        
     }
     
     public func hideSeparator(_ state: Bool) {

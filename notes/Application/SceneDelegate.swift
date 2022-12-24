@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
@@ -21,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "d MMM HH:mm"
             note.name = "First Note"
-            note.text = "Some text"
+            note.text = NSAttributedString(string: "Some text")
             note.date = dateFormatter.date(from: "9 Jan 9:41")
             if notes.count == 0 {
                 DataManager.shared.saveNote(isNew: true, note: note) {

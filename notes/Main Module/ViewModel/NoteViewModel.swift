@@ -16,14 +16,11 @@ struct NoteViewModel {
         return name
     }
     
-    var text: String {
-        guard let text = note.text else { return ""}
-        return text
-    }
-    
-    var image: UIImage {
-        guard let data = note.image, let img = UIImage(data: data) else { return UIImage()}
-        return img
+    var text: NSAttributedString {
+        guard let text = note.text else { return NSAttributedString(string: "")}
+        let textWithFont = text.mutableCopy() as! NSMutableAttributedString
+        textWithFont.addAttribute(.font, value: UIFont.systemFont(ofSize: 17), range: NSRange(location: 0, length: textWithFont.length))
+        return textWithFont as NSAttributedString
     }
     
     var date: String {
