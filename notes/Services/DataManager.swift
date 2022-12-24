@@ -41,7 +41,6 @@ struct DataManager {
             print("Could not fetch. \(error.localizedDescription)")
         }
         result = result.sorted(by: { $0.date! > $1.date! })
-        print(result[0].text)
         completion(result)
     }
     
