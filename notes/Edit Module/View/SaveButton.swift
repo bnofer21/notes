@@ -41,7 +41,8 @@ class SaveButton: UIButton {
             if let image = self.buttonImage {
                 self.setImage(image, for: .normal)
             }
-            self.indicator.stopAnimating()
+            guard let indicator = self.indicator else { return }
+            indicator.stopAnimating()
         }
     }
     

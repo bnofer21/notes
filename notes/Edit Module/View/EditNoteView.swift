@@ -22,25 +22,29 @@ class EditNoteView: UIView {
     
     var addImageButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "camera"), for: .normal)
+        let conf = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .large)
+        button.setImage(UIImage(systemName: "camera", withConfiguration: conf)?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
     var makeBoldText: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "bold"), for: .normal)
+        let conf = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .large)
+        button.setImage(UIImage(systemName: "bold")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
     var smallerFont: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "textformat.size.smaller"), for: .normal)
+        let conf = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .large)
+        button.setImage(UIImage(systemName: "textformat.size.smaller")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
     var biggerFont: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "textformat.size.larger"), for: .normal)
+        let conf = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .large)
+        button.setImage(UIImage(systemName: "textformat.size.larger")?.withRenderingMode(.alwaysOriginal), for: .normal)
         return button
     }()
     
@@ -88,8 +92,12 @@ class EditNoteView: UIView {
         makeBoldText.addTarget(target, action: action, for: .touchUpInside)
     }
     
-    func setChangeFontTarget(target: Any?, action: Selector) {
+    func setSmallerFontTarget(target: Any?, action: Selector) {
         smallerFont.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    func setBiggerFontTarget(target: Any?, action: Selector) {
+        biggerFont.addTarget(target, action: action, for: .touchUpInside)
     }
     
     private func configure() {
