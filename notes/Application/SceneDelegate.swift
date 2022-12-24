@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "d MMM HH:mm"
             note.name = "First Note"
-            note.text = NSAttributedString(string: "Some text")
+            note.text = NSAttributedString(string: "Some text", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)])
             note.date = dateFormatter.date(from: "9 Jan 9:41")
             if notes.count == 0 {
                 DataManager.shared.saveNote(isNew: true, note: note) {

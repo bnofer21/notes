@@ -11,6 +11,7 @@
 		5B33EA282954462900861E53 /* ScrollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33EA272954462900861E53 /* ScrollViewModel.swift */; };
 		5B33EA2F2955A8C600861E53 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33EA2E2955A8C600861E53 /* Resources.swift */; };
 		5B33EA312956EC4C00861E53 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33EA302956EC4B00861E53 /* UIFont+Extension.swift */; };
+		5B33EA3329571C4500861E53 /* SaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33EA3229571C4500861E53 /* SaveButton.swift */; };
 		5BEB776E295307AD00C2EEE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB776D295307AD00C2EEE8 /* AppDelegate.swift */; };
 		5BEB7770295307AD00C2EEE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB776F295307AD00C2EEE8 /* SceneDelegate.swift */; };
 		5BEB7772295307AD00C2EEE8 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB7771295307AD00C2EEE8 /* MainController.swift */; };
@@ -32,6 +33,7 @@
 		5B33EA272954462900861E53 /* ScrollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewModel.swift; sourceTree = "<group>"; };
 		5B33EA2E2955A8C600861E53 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		5B33EA302956EC4B00861E53 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		5B33EA3229571C4500861E53 /* SaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButton.swift; sourceTree = "<group>"; };
 		5BEB776A295307AD00C2EEE8 /* notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BEB776D295307AD00C2EEE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BEB776F295307AD00C2EEE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				5BEB779F295323AC00C2EEE8 /* EditNoteView.swift */,
+				5B33EA3229571C4500861E53 /* SaveButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				5B33EA2629543F1100861E53 /* ScrollView.swift in Sources */,
 				5BEB77A42953358F00C2EEE8 /* NotesView.swift in Sources */,
 				5BEB7778295307AD00C2EEE8 /* notes.xcdatamodeld in Sources */,
+				5B33EA3329571C4500861E53 /* SaveButton.swift in Sources */,
 				5BEB779429530FFD00C2EEE8 /* NotesTableView.swift in Sources */,
 				5BEB77962953103300C2EEE8 /* NoteCell.swift in Sources */,
 				5BEB77A0295323AC00C2EEE8 /* EditNoteView.swift in Sources */,
