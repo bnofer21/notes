@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class EditController: UIViewController {
     
@@ -69,10 +70,15 @@ class EditController: UIViewController {
     
     private func photoPickerPresent(type: Resources.PhotoType) {
         let vc = UIImagePickerController()
-        if type == .camera {
-            vc.sourceType = .camera
+        if type == .gallery {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in
+                DispatchQueue.main.async {
+                    vc.sourceType = .photoLibrary
+                }
+            }
         } else {
-            vc.sourceType = .photoLibrary
+            
+            vc.sourceType = .camera
         }
         vc.delegate = self
         present(vc, animated: true)
@@ -87,8 +93,9 @@ class EditController: UIViewController {
         // textview and image size
         let imageWidth = image.size.width
         let textview = noteView.textView
-        let scaleFactor = imageWidth/(textview.frame.width-10)
-        attachment.image = UIImage(cgImage: image.cgImage!, scale: scaleFactor, orientation: .up)
+        let scaleFactor = imageWidth/textview.frame.width
+        let newImg = UIImage(cgImage: image.cgImage!, scale: scaleFactor, orientation: image.imageOrientation)
+        attachment.image = newImg
         // add image to textview
         textview.textStorage.insert(attrString, at: textview.selectedRange.location)
         textViewDidChange(noteView.textView)
@@ -178,6 +185,7 @@ extension EditController: UIImagePickerControllerDelegate, UINavigationControlle
         guard let image = info[.originalImage] as? UIImage else { return }
         setImageInsideTextView(image: image)
     }
+    
 }
 
 
