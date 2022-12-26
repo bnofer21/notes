@@ -11,7 +11,6 @@ class NotesTableView: UITableView {
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
-        configure()
         setupView()
     }
     
@@ -19,11 +18,17 @@ class NotesTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
-        register(NoteCell.self, forCellReuseIdentifier: NoteCell.id)
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        frame.size.height = contentSize.height
     }
     
     private func setupView() {
-        backgroundColor = .systemBackground
+        register(NoteCell.self, forCellReuseIdentifier: NoteCell.id)
+        backgroundColor = .white
+        layer.masksToBounds = true
+        layer.cornerRadius = 15
+        separatorStyle = .none
+        isScrollEnabled = false
     }
 }
