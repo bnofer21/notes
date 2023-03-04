@@ -26,6 +26,16 @@
 		5BEB77A22953248000C2EEE8 /* EditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB77A12953248000C2EEE8 /* EditController.swift */; };
 		5BEB77A42953358F00C2EEE8 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB77A32953358F00C2EEE8 /* NotesView.swift */; };
 		5BEB77A72953360700C2EEE8 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEB77A62953360700C2EEE8 /* UIView+Extension.swift */; };
+		5BEF29FD29ADE1E200496D41 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF29FC29ADE1E200496D41 /* MainViewController.swift */; };
+		5BEF2A0129ADE21000496D41 /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A0029ADE21000496D41 /* Coordinating.swift */; };
+		5BEF2A0329ADE23F00496D41 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A0229ADE23F00496D41 /* AppCoordinator.swift */; };
+		5BEF2A0529ADE44F00496D41 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A0429ADE44F00496D41 /* MainViewModel.swift */; };
+		5BEF2A0829ADE9E200496D41 /* MainNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A0729ADE9E200496D41 /* MainNoteCell.swift */; };
+		5BEF2A0C29ADEB6D00496D41 /* SectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A0B29ADEB6D00496D41 /* SectionViewModel.swift */; };
+		5BEF2A0E29ADED0E00496D41 /* NoteCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A0D29ADED0E00496D41 /* NoteCellViewModel.swift */; };
+		5BEF2A1029ADF39000496D41 /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A0F29ADF39000496D41 /* MainTableView.swift */; };
+		5BEF2A1229AE512F00496D41 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A1129AE512F00496D41 /* EditViewModel.swift */; };
+		5BEF2A1429AE581F00496D41 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A1329AE581F00496D41 /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +60,16 @@
 		5BEB77A12953248000C2EEE8 /* EditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditController.swift; sourceTree = "<group>"; };
 		5BEB77A32953358F00C2EEE8 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		5BEB77A62953360700C2EEE8 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		5BEF29FC29ADE1E200496D41 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5BEF2A0029ADE21000496D41 /* Coordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
+		5BEF2A0229ADE23F00496D41 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		5BEF2A0429ADE44F00496D41 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		5BEF2A0729ADE9E200496D41 /* MainNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNoteCell.swift; sourceTree = "<group>"; };
+		5BEF2A0B29ADEB6D00496D41 /* SectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewModel.swift; sourceTree = "<group>"; };
+		5BEF2A0D29ADED0E00496D41 /* NoteCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCellViewModel.swift; sourceTree = "<group>"; };
+		5BEF2A0F29ADF39000496D41 /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
+		5BEF2A1129AE512F00496D41 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
+		5BEF2A1329AE581F00496D41 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				5BEB77842953086000C2EEE8 /* Application */,
-				5BEB778B295308BC00C2EEE8 /* Main Module */,
-				5BEB778A295308B100C2EEE8 /* Edit Module */,
+				5BEF29FE29ADE1F900496D41 /* Coordinator */,
+				5BEF29B629ACBD3800496D41 /* MVVM */,
+				5BEF29B729ACBD4000496D41 /* Old Module */,
 				5BEB77972953160400C2EEE8 /* Services */,
 				5BEB77882953088C00C2EEE8 /* View */,
 				5BEB77862953087E00C2EEE8 /* Supporting files */,
@@ -170,8 +191,6 @@
 			children = (
 				5BEB779329530FFD00C2EEE8 /* NotesTableView.swift */,
 				5BEB77952953103300C2EEE8 /* NoteCell.swift */,
-				5BEB77A32953358F00C2EEE8 /* NotesView.swift */,
-				5B33EA2529543F1100861E53 /* ScrollView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,7 +214,6 @@
 		5BEB779D2953239200C2EEE8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5BEB779F295323AC00C2EEE8 /* EditNoteView.swift */,
 				5B33EA3229571C4500861E53 /* SaveButton.swift */,
 			);
 			path = View;
@@ -208,6 +226,122 @@
 				5B33EA302956EC4B00861E53 /* UIFont+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5BEF29B629ACBD3800496D41 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF29F729ADE16500496D41 /* Main Module */,
+				5BEF29F829ADE16E00496D41 /* Edit Module */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		5BEF29B729ACBD4000496D41 /* Old Module */ = {
+			isa = PBXGroup;
+			children = (
+				5BEB778B295308BC00C2EEE8 /* Main Module */,
+				5BEB778A295308B100C2EEE8 /* Edit Module */,
+			);
+			path = "Old Module";
+			sourceTree = "<group>";
+		};
+		5BEF29B829ACBD8700496D41 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5BEF29B929ACBD8B00496D41 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5BEB779F295323AC00C2EEE8 /* EditNoteView.swift */,
+				5BEF2A1329AE581F00496D41 /* EditViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5BEF29BA29ACBD9000496D41 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF2A1129AE512F00496D41 /* EditViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5BEF29F729ADE16500496D41 /* Main Module */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF29FB29ADE19E00496D41 /* Model */,
+				5BEF29FA29ADE19B00496D41 /* View */,
+				5BEF29F929ADE19500496D41 /* ViewModel */,
+			);
+			path = "Main Module";
+			sourceTree = "<group>";
+		};
+		5BEF29F829ADE16E00496D41 /* Edit Module */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF29BA29ACBD9000496D41 /* ViewModel */,
+				5BEF29B929ACBD8B00496D41 /* View */,
+				5BEF29B829ACBD8700496D41 /* Model */,
+			);
+			path = "Edit Module";
+			sourceTree = "<group>";
+		};
+		5BEF29F929ADE19500496D41 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF2A0429ADE44F00496D41 /* MainViewModel.swift */,
+				5BEF2A0B29ADEB6D00496D41 /* SectionViewModel.swift */,
+				5BEF2A0D29ADED0E00496D41 /* NoteCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5BEF29FA29ADE19B00496D41 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B33EA2529543F1100861E53 /* ScrollView.swift */,
+				5BEB77A32953358F00C2EEE8 /* NotesView.swift */,
+				5BEF2A0F29ADF39000496D41 /* MainTableView.swift */,
+				5BEF29FC29ADE1E200496D41 /* MainViewController.swift */,
+				5BEF2A0629ADE9C600496D41 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5BEF29FB29ADE19E00496D41 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5BEF29FE29ADE1F900496D41 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF29FF29ADE20300496D41 /* Protocols */,
+				5BEF2A0229ADE23F00496D41 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		5BEF29FF29ADE20300496D41 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF2A0029ADE21000496D41 /* Coordinating.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5BEF2A0629ADE9C600496D41 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF2A0729ADE9E200496D41 /* MainNoteCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,21 +416,31 @@
 			files = (
 				5BEB779029530F4E00C2EEE8 /* NoteViewModel.swift in Sources */,
 				5BEB779A2953162E00C2EEE8 /* DataManager.swift in Sources */,
+				5BEF2A1029ADF39000496D41 /* MainTableView.swift in Sources */,
 				5BEB7772295307AD00C2EEE8 /* MainController.swift in Sources */,
 				5B33EA2F2955A8C600861E53 /* Resources.swift in Sources */,
 				5BEB776E295307AD00C2EEE8 /* AppDelegate.swift in Sources */,
 				5BEB7770295307AD00C2EEE8 /* SceneDelegate.swift in Sources */,
+				5BEF2A0829ADE9E200496D41 /* MainNoteCell.swift in Sources */,
 				5BEB77A22953248000C2EEE8 /* EditController.swift in Sources */,
+				5BEF2A0E29ADED0E00496D41 /* NoteCellViewModel.swift in Sources */,
 				5BEB77A72953360700C2EEE8 /* UIView+Extension.swift in Sources */,
 				5B33EA2629543F1100861E53 /* ScrollView.swift in Sources */,
 				5BEB77A42953358F00C2EEE8 /* NotesView.swift in Sources */,
+				5BEF2A0129ADE21000496D41 /* Coordinating.swift in Sources */,
 				5BEB7778295307AD00C2EEE8 /* notes.xcdatamodeld in Sources */,
+				5BEF2A0329ADE23F00496D41 /* AppCoordinator.swift in Sources */,
 				5B33EA3329571C4500861E53 /* SaveButton.swift in Sources */,
+				5BEF2A0529ADE44F00496D41 /* MainViewModel.swift in Sources */,
+				5BEF2A0C29ADEB6D00496D41 /* SectionViewModel.swift in Sources */,
 				5BEB779429530FFD00C2EEE8 /* NotesTableView.swift in Sources */,
 				5BEB77962953103300C2EEE8 /* NoteCell.swift in Sources */,
 				5BEB77A0295323AC00C2EEE8 /* EditNoteView.swift in Sources */,
+				5BEF29FD29ADE1E200496D41 /* MainViewController.swift in Sources */,
 				5B33EA312956EC4C00861E53 /* UIFont+Extension.swift in Sources */,
+				5BEF2A1229AE512F00496D41 /* EditViewModel.swift in Sources */,
 				5B33EA282954462900861E53 /* ScrollViewModel.swift in Sources */,
+				5BEF2A1429AE581F00496D41 /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

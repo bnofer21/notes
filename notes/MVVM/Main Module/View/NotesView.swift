@@ -9,7 +9,7 @@ import UIKit
 
 class NotesView: UIView {
     
-    var notesTableView = NotesTableView()
+    var notesTableView = MainTableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,6 +22,7 @@ class NotesView: UIView {
     }
     
     private func setupView() {
+        backgroundColor = .lightGray
         addView(notesTableView)
     }
 }

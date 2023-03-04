@@ -30,7 +30,7 @@ class EditController: UIViewController {
     }
     
     override func loadView() {
-        noteView.viewModel = NoteViewModel(note: note)
+//        noteView.viewModel = NoteViewModel(note: note)
         view = noteView
     }
     
@@ -166,14 +166,14 @@ extension EditController: UITextViewDelegate {
             isNew = true
         }
         note.date = Date.now
-        DataManager.shared.saveNote(isNew: isNew, note: note) {
-            if let rootvc = navigationController?.viewControllers.first as? MainController {
-                if isNew {
-                    rootvc.notes.insert(note, at: 0)
-                }
-                rootvc.updateData()
-            }
-        }
+//        DataManager.shared.saveNote(isNew: isNew, note: note) {
+//            if let rootvc = navigationController?.viewControllers.first as? MainController {
+//                if isNew {
+//                    rootvc.notes.insert(note, at: 0)
+//                }
+//                rootvc.updateData()
+//            }
+//        }
     }
 
 }

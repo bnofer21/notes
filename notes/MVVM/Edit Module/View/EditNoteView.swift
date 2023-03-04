@@ -9,7 +9,7 @@ import UIKit
 
 class EditNoteView: UIView {
     
-    var viewModel: NoteViewModel? {
+    var viewModel: EditViewModelProtocol? {
         didSet {
             configure()
         }
@@ -69,8 +69,8 @@ class EditNoteView: UIView {
     private func setupView() {
         backgroundColor = .systemBackground
         addView(textView)
-        addView(keyboardToolBar)
-        textView.inputAccessoryView = keyboardToolBar
+//        addView(keyboardToolBar)
+//        textView.inputAccessoryView = keyboardToolBar
     }
     
     private func setFontTextView() {
@@ -102,8 +102,7 @@ class EditNoteView: UIView {
     
     private func configure() {
         guard let viewModel = viewModel else { return }
-        print(viewModel.text.attributes(at: 0, effectiveRange: nil))
-        if viewModel.text.string.isEmpty {
+        if let text = viewModel.text, text.string.isEmpty {
             setFontTextView()
         } else {
             textView.attributedText = viewModel.text

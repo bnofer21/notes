@@ -13,4 +13,9 @@ enum Resources {
         case camera
         case gallery
     }
+    
+    enum Event {
+        case edit
+        case back
+    }
 }

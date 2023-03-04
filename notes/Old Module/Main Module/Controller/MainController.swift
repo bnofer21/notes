@@ -97,10 +97,10 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            DataManager.shared.deleteNote(note: notes[indexPath.row]) {
-                notes.remove(at: indexPath.row)
-                updateData()
-            }
+//            DataManager.shared.deleteNote(note: notes[indexPath.row]) {
+//                notes.remove(at: indexPath.row)
+//                updateData()
+//            }
         }
     }
     

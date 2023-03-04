@@ -34,7 +34,7 @@ class ScrollView: UIScrollView {
         super.init(frame: frame)
         setupView()
         setConstraints()
-        
+        delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -64,7 +64,7 @@ class ScrollView: UIScrollView {
     
     private func setupView() {
         addView(notesView)
-        addView(bottomToolBar)
+//        addView(bottomToolBar)
         backgroundColor = #colorLiteral(red: 0.8979851604, green: 0.8979851604, blue: 0.8979851604, alpha: 1)
     }
 }
@@ -77,9 +77,18 @@ extension ScrollView {
             notesView.centerXAnchor.constraint(equalTo: centerXAnchor),
             notesView.widthAnchor.constraint(equalTo: widthAnchor),
             
-            bottomToolBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            bottomToolBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            bottomToolBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+//            bottomToolBar.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+//            bottomToolBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+//            bottomToolBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
         ])
+    }
+}
+
+extension ScrollView: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+            scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.bounds.height
+        }
     }
 }
