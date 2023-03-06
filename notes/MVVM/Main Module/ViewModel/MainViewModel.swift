@@ -9,6 +9,7 @@ import Foundation
 
 protocol MainViewModelInput {
     var sections: [SectionViewModelProtocol]! { get }
+    var notesCount: Int! { get }
     func loadNotes(completion: @escaping (String?) -> Void)
 }
 
@@ -28,6 +29,8 @@ final class MainViewModel: Coordinating, MainViewModelType {
     var sections: [SectionViewModelProtocol]!
     var notes: [Note]?
     
+    var notesCount: Int!
+    
     func loadNotes(completion: @escaping (String?) -> Void) {
         sections = []
         var cells = [NoteCellViewModelProtocol]()
@@ -37,6 +40,7 @@ final class MainViewModel: Coordinating, MainViewModelType {
                 return
             } else if let notes = notes {
                 self?.notes = notes
+                self?.notesCount = notes.count
                 notes.forEach{
                     cells.append(NoteCellViewModel(note: $0))
                 }

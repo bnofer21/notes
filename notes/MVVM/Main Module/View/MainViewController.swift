@@ -11,8 +11,16 @@ final class MainViewController: UIViewController {
     
     var newNoteButton: UIButton = {
         let butt = UIButton(type: .system)
-        butt.setTitle("New", for: .normal)
+        let conf = UIImage.SymbolConfiguration(pointSize: 16, weight: .regular, scale: .large)
+        butt.setImage(UIImage(systemName: "square.and.pencil", withConfiguration: conf), for: .normal)
         return butt
+    }()
+    
+    var countLabel: UILabel = {
+        let lab = UILabel()
+        lab.text = "3414 Notes"
+        lab.font = UIFont.systemFont(ofSize: 13)
+        return lab
     }()
     
     var viewModel: MainViewModelType?
@@ -28,11 +36,15 @@ final class MainViewController: UIViewController {
         setupView()
         targets()
         delegates()
-        title = "Main"
+        title = "Notes"
     }
     
     private func setupView() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: newNoteButton)
+        let count = UIBarButtonItem(customView: countLabel)
+        let newNote = UIBarButtonItem(customView: newNoteButton)
+        let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: self, action: nil)
+        toolbarItems = [count, newNote]
     }
     
     private func delegates() {
@@ -40,8 +52,10 @@ final class MainViewController: UIViewController {
         scrollView.notesView.notesTableView.dataSource = self
     }
     
-    private func setupTableView() {
+    private func configureView() {
+        guard let viewModel = viewModel else { return }
         scrollView.notesView.notesTableView.setup()
+        countLabel.text = "\(viewModel.notesCount ?? 0) Notes"
     }
     
     private func show(_ error: String) {
@@ -62,7 +76,7 @@ final class MainViewController: UIViewController {
             if let error = error {
                 self?.show(error)
             } else {
-                self?.setupTableView()
+                self?.configureView()
             }
         }
     }

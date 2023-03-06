@@ -18,4 +18,10 @@ enum Resources {
         case edit
         case back
     }
+    
+    enum BarEvent: String, CaseIterable {
+        case bold = "bold"
+        case bigger = "textformat.size.larger"
+        case smaller = "textformat.size.smaller"
+    }
 }
