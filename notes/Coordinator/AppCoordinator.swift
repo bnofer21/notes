@@ -24,6 +24,7 @@ final class AppCoordinator: Coordinator {
     }
     
     func start() {
+        navigationController.isToolbarHidden = false
         let vc = MainViewController()
         let vm = MainViewModel()
         vm.coordinator = self

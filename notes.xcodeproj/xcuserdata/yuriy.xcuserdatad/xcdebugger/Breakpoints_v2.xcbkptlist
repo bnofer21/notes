@@ -14,8 +14,8 @@
             filePath = "notes/Services/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "saveChanges(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,10 +30,58 @@
             filePath = "notes/Services/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "saveChanges(_:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "143CADB5-02ED-4163-8101-73D2DAE8AFB7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "notes/MVVM/Edit Module/View/EditViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "barEventOccured(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "143CADB5-02ED-4163-8101-73D2DAE8AFB7 - 5f73cc530600f2a4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "notes.EditViewController.barEventOccured(__C.UIButton) -&gt; ()"
+                  moduleName = "notes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuriy/Desktop/development/%D1%81%D0%B2%D0%BE%D0%B5/notes/notes/MVVM/Edit%20Module/View/EditViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "236">
+               </Location>
+               <Location
+                  uuid = "143CADB5-02ED-4163-8101-73D2DAE8AFB7 - d8cfb38fda09a68a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in notes.EditViewController.barEventOccured(__C.UIButton) -&gt; ()"
+                  moduleName = "notes"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yuriy/Desktop/development/%D1%81%D0%B2%D0%BE%D0%B5/notes/notes/MVVM/Edit%20Module/View/EditViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

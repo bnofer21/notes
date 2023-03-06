@@ -36,6 +36,7 @@
 		5BEF2A1029ADF39000496D41 /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A0F29ADF39000496D41 /* MainTableView.swift */; };
 		5BEF2A1229AE512F00496D41 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A1129AE512F00496D41 /* EditViewModel.swift */; };
 		5BEF2A1429AE581F00496D41 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A1329AE581F00496D41 /* EditViewController.swift */; };
+		5BEF2A1829B3A04C00496D41 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF2A1729B3A04C00496D41 /* UITextView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		5BEF2A0F29ADF39000496D41 /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
 		5BEF2A1129AE512F00496D41 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		5BEF2A1329AE581F00496D41 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		5BEF2A1729B3A04C00496D41 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 			children = (
 				5BEB77A62953360700C2EEE8 /* UIView+Extension.swift */,
 				5B33EA302956EC4B00861E53 /* UIFont+Extension.swift */,
+				5BEF2A1729B3A04C00496D41 /* UITextView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				5B33EA2F2955A8C600861E53 /* Resources.swift in Sources */,
 				5BEB776E295307AD00C2EEE8 /* AppDelegate.swift in Sources */,
 				5BEB7770295307AD00C2EEE8 /* SceneDelegate.swift in Sources */,
+				5BEF2A1829B3A04C00496D41 /* UITextView+Extension.swift in Sources */,
 				5BEF2A0829ADE9E200496D41 /* MainNoteCell.swift in Sources */,
 				5BEB77A22953248000C2EEE8 /* EditController.swift in Sources */,
 				5BEF2A0E29ADED0E00496D41 /* NoteCellViewModel.swift in Sources */,
@@ -582,8 +586,9 @@
 				DEVELOPMENT_TEAM = 88H5UYEH5N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "notes/Supporting files/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App needs a permission to use camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App needs a permission to use your photo library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App needs a permission to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -611,8 +616,9 @@
 				DEVELOPMENT_TEAM = 88H5UYEH5N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "notes/Supporting files/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App needs a permission to use camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "App needs a permission to use your photo library";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App needs a permission to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

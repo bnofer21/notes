@@ -26,26 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.overrideUserInterfaceStyle = .light
         
         self.window = window
-        
-//        DataManager.shared.loadNotes { notes in
-//            var nav = UINavigationController()
-//            let note = Note(entity: Note.entity(), insertInto: nil)
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "d MMM HH:mm"
-//            note.name = "First Note"
-//            note.text = NSAttributedString(string: "Some text", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)])
-//            note.date = dateFormatter.date(from: "9 Jan 9:41")
-//            if notes.count == 0 {
-//                DataManager.shared.saveNote(isNew: true, note: note) {
-//                    nav = UINavigationController(rootViewController: MainController(notes: [note]))
-//                }
-//            } else {
-//                nav = UINavigationController(rootViewController: MainController(notes: notes))
-//            }
-//            self.window = UIWindow(windowScene: windowScene)
-//            self.window?.rootViewController = nav
-//            self.window?.makeKeyAndVisible()
-//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
