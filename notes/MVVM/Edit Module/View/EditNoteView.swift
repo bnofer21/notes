@@ -9,49 +9,26 @@ import UIKit
 
 class EditNoteView: UIView {
     
+    var bottomConstraint: NSLayoutConstraint!
+    
     var viewModel: EditViewModelProtocol? {
         didSet {
             configure()
         }
     }
     
+    var buttons = [UIButton]()
+    
     var keyboardToolBar: UIToolbar = {
         let tool = UIToolbar()
         return tool
-    }()
-    
-    var addImageButton: UIButton = {
-        let button = UIButton(type: .system)
-        let conf = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .large)
-        button.setImage(UIImage(systemName: "camera", withConfiguration: conf)?.withRenderingMode(.alwaysOriginal), for: .normal)
-        return button
-    }()
-    
-    var makeBoldText: UIButton = {
-        let button = UIButton()
-        let conf = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .large)
-        button.setImage(UIImage(systemName: "bold")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        return button
-    }()
-    
-    var smallerFont: UIButton = {
-        let button = UIButton()
-        let conf = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .large)
-        button.setImage(UIImage(systemName: "textformat.size.smaller")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        return button
-    }()
-    
-    var biggerFont: UIButton = {
-        let button = UIButton()
-        let conf = UIImage.SymbolConfiguration(pointSize: 18, weight: .regular, scale: .large)
-        button.setImage(UIImage(systemName: "textformat.size.larger")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        return button
     }()
     
     var textView: UITextView = {
         let tv = UITextView()
         tv.font = .systemFont(ofSize: 17)
         tv.sizeToFit()
+        tv.lineSpacing = 5
         return tv
     }()
     
@@ -69,35 +46,31 @@ class EditNoteView: UIView {
     private func setupView() {
         backgroundColor = .systemBackground
         addView(textView)
-//        addView(keyboardToolBar)
-//        textView.inputAccessoryView = keyboardToolBar
     }
     
-    private func setFontTextView() {
-        let attributtedText = NSMutableAttributedString(attributedString: textView.attributedText)
-        attributtedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 17), range: NSRange(location: 0, length: attributtedText.length))
-        textView.attributedText = attributtedText
+    private func createBarButtons() {
+        for i in 0..<Resources.BarEvent.allCases.count {
+            let button = UIButton(type: .system)
+            let conf = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular, scale: .large)
+            button.tag = i
+            button.setImage(UIImage(systemName: Resources.BarEvent.allCases[i].rawValue, withConfiguration: conf)?.withRenderingMode(.alwaysTemplate), for: .normal)
+            buttons.append(button)
+        }
     }
     
     private func configureToolBar() {
-        let cameraBar = UIBarButtonItem(customView: addImageButton)
-        let boldText = UIBarButtonItem(customView: makeBoldText)
-        let smallFont = UIBarButtonItem(customView: smallerFont)
-        let bigFont = UIBarButtonItem(customView: biggerFont)
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        keyboardToolBar.items = [boldText, flexSpace, bigFont, flexSpace,smallFont, flexSpace, cameraBar]
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        var barButtons = [UIBarButtonItem]()
+        createBarButtons()
+        buttons.forEach{ barButtons.append(UIBarButtonItem(customView: $0))}
+        keyboardToolBar.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: 44)
+        
+        keyboardToolBar.items = [barButtons[0], space, barButtons[1], space, barButtons[2]]
+        textView.inputAccessoryView = keyboardToolBar
     }
     
-    func setTextTarget(target: Any?, action: Selector) {
-        makeBoldText.addTarget(target, action: action, for: .touchUpInside)
-    }
-    
-    func setSmallerFontTarget(target: Any?, action: Selector) {
-        smallerFont.addTarget(target, action: action, for: .touchUpInside)
-    }
-    
-    func setBiggerFontTarget(target: Any?, action: Selector) {
-        biggerFont.addTarget(target, action: action, for: .touchUpInside)
+    func setBarTargets(target: Any?, action: Selector) {
+        buttons.forEach{ $0.addTarget(target, action: action, for: .touchUpInside) }
     }
     
     private func configure() {
@@ -109,11 +82,11 @@ class EditNoteView: UIView {
         }
     }
     
-    func createActionsMenu(actions: [UIAction]) {
-        addImageButton.menu = UIMenu(title: "", children: actions)
-        addImageButton.showsMenuAsPrimaryAction = true
+    private func setFontTextView() {
+        let attributtedText = NSMutableAttributedString(attributedString: textView.attributedText)
+        attributtedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 17), range: NSRange(location: 0, length: attributtedText.length))
+        textView.attributedText = attributtedText
     }
-    
     
 }
 
@@ -125,8 +98,8 @@ extension EditNoteView {
             textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30),
             textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            
         ])
+        bottomConstraint = constraints.first(where: { $0.firstAttribute == .bottom || $0.secondItem as? UIView == self.textView })
     }
 }
 

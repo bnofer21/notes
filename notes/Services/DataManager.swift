@@ -19,6 +19,8 @@ class DataManager: DataManagerInterface {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    let queue = DispatchQueue(label: "saveThread")
+    
     private func saveChanges(_ context: NSManagedObjectContext, completion: @escaping (String?) -> Void) {
         do {
             try context.save()
@@ -30,37 +32,45 @@ class DataManager: DataManagerInterface {
     }
     
     func saveNewNote(text: NSAttributedString, completion: @escaping (String?) -> Void) {
-        let context = appDelegate.persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else {
-            completion("Error creating create new entity")
-            return
-        }
-        let noteObject = Note(entity: entity, insertInto: context)
-        noteObject.name = String(text.string.prefix(15))
-        noteObject.text = text
-        noteObject.date = Date()
-        saveChanges(context) { error in
-            if let error = error {
-                completion(error)
-            } else {
-                completion(nil)
+        queue.async { [ weak self] in
+            guard let context = self?.appDelegate.persistentContainer.viewContext else { return }
+            guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else {
+                completion("Error creating create new entity")
+                return
+            }
+            let noteObject = Note(entity: entity, insertInto: context)
+            noteObject.name = String(text.string.prefix(15))
+            noteObject.text = text
+            noteObject.date = Date()
+            self?.saveChanges(context) { error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        completion(error)
+                    } else {
+                        completion(nil)
+                    }
+                }
             }
         }
     }
     
     func saveNote(note: Note, completion: @escaping (String?)->Void) {
-        let context = appDelegate.persistentContainer.viewContext
-        guard let object = context.registeredObject(for: note.objectID) as? Note else {
-            completion("Object not found")
-            return }
-        object.name = note.name
-        object.text = note.text
-        object.date = Date()
-        saveChanges(context) { error in
-            if let error = error {
-                completion(error)
-            } else {
-                completion(nil)
+        queue.async { [weak self] in
+            guard let context = self?.appDelegate.persistentContainer.viewContext else { return }
+            guard let object = context.registeredObject(for: note.objectID) as? Note else {
+                completion("Note not found")
+                return }
+            object.name = note.name
+            object.text = note.text
+            object.date = Date()
+            self?.saveChanges(context) { error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        completion(error)
+                    } else {
+                        completion(nil)
+                    }
+                }
             }
         }
     }

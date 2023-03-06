@@ -54,14 +54,11 @@ class EditController: UIViewController {
         let imageFromGallery = UIAction(title: "From gallery", image: UIImage(systemName: "photo.on.rectangle")) { _ in
             self.photoPickerPresent(type: .gallery)
         }
-        noteView.createActionsMenu(actions: [imageFromCamera, imageFromGallery])
+//        noteView.createActionsMenu(actions: [imageFromCamera, imageFromGallery])
     }
     
     private func addTargets() {
         saveButton.addTarget(self, action: #selector(hideKeyboard), for: .touchUpInside)
-        noteView.setTextTarget(target: self, action: #selector(makeBold))
-        noteView.setSmallerFontTarget(target: self, action: #selector(smallerFontSize))
-        noteView.setBiggerFontTarget(target: self, action: #selector(biggerFontSize))
     }
     
     private func setDelegates() {
